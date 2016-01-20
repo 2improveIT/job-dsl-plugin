@@ -891,6 +891,18 @@ class StepContextSpec extends Specification {
         when:
         context.copyArtifacts('upstream') {
             buildSelector {
+                latestCompleted()
+            }
+        }
+
+        then:
+        Node selectorNode = context.stepNodes[0].selector[0]
+        selectorNode.attribute('class') == 'hudson.plugins.copyartifact.LastCompletedSelector'
+        selectorNode.children().size() == 0
+
+        when:
+        context.copyArtifacts('upstream') {
+            buildSelector {
                 latestSaved()
             }
         }

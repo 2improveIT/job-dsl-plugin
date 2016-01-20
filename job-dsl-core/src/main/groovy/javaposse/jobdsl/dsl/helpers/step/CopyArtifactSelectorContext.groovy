@@ -63,6 +63,13 @@ class CopyArtifactSelectorContext extends AbstractContext {
     }
 
     /**
+     * Selects the last completed build (ignoring build status).
+     */
+    void latestCompleted() {
+        createSelectorNode('LastCompleted')
+    }
+
+    /**
      * Selects a build by permalink.
      *
      * @param linkName Values like lastBuild, lastStableBuild
